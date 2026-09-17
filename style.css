@@ -586,6 +586,16 @@ a { color: var(--red); }
   align-self: flex-end;
   border-bottom-right-radius: 2px;
 }
+.eindje-msg.eindje-searching {
+  font-style: italic;
+  color: #888;
+  animation: eindje-pulse 1.2s ease-in-out infinite;
+}
+.eindje-msg a { color: var(--red); font-weight: 700; }
+@keyframes eindje-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
 .eindje-quick {
   display: flex;
   flex-wrap: wrap;

@@ -86,8 +86,8 @@ const KNOWLEDGE = [
 ];
 
 const FALLBACKS = [
-  "Goede vraag! Daar heb ik nog geen kant-en-klaar antwoord op, maar bekijk de sectie 'Geschiedenis' hierboven voor het volledige verhaal van Eindhoven.",
-  "Hmm, dat weet ik niet precies. Probeer eens te vragen naar Philips, 1232, de bevrijding of Brainport!",
+  "Goede vraag! Daar heb ik geen kant-en-klaar antwoord op, maar ik zoek het voor je op...",
+  "Hmm, dat weet ik niet uit mijn hoofd. Laat me even op internet zoeken...",
 ];
 
 const QUICK_QUESTIONS = [
@@ -97,22 +97,58 @@ const QUICK_QUESTIONS = [
   "Wat is Brainport?"
 ];
 
-function addMessage(text, sender) {
+function addMessage(content, sender, isHtml = false) {
   const div = document.createElement('div');
   div.className = `eindje-msg ${sender}`;
-  div.textContent = text;
+  if (isHtml) {
+    div.innerHTML = content;
+  } else {
+    div.textContent = content;
+  }
   messagesEl.appendChild(div);
   messagesEl.scrollTop = messagesEl.scrollHeight;
+  return div;
 }
 
-function findAnswer(question) {
+function escapeHtmlChat(str) {
+  const div = document.createElement('div');
+  div.textContent = str == null ? '' : String(str);
+  return div.innerHTML;
+}
+
+function findLocalAnswer(question) {
   const q = question.toLowerCase();
   for (const entry of KNOWLEDGE) {
     if (entry.keywords.some(k => q.includes(k))) {
       return entry.answer;
     }
   }
-  return FALLBACKS[Math.floor(Math.random() * FALLBACKS.length)];
+  return null;
+}
+
+/* ---------- Zoeken op internet (Wikipedia, via publieke CORS-API) ---------- */
+async function searchWeb(query) {
+  try {
+    const searchUrl = `https://nl.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query + ' Eindhoven')}&format=json&origin=*&srlimit=1`;
+    const searchRes = await fetch(searchUrl);
+    if (!searchRes.ok) return null;
+    const searchData = await searchRes.json();
+    const hit = searchData?.query?.search?.[0];
+    if (!hit) return null;
+
+    const summaryRes = await fetch(`https://nl.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(hit.title)}`);
+    if (!summaryRes.ok) return null;
+    const summaryData = await summaryRes.json();
+    if (!summaryData.extract) return null;
+
+    return {
+      text: summaryData.extract,
+      url: summaryData.content_urls?.desktop?.page || `https://nl.wikipedia.org/wiki/${encodeURIComponent(hit.title)}`
+    };
+  } catch (e) {
+    console.warn('Internetzoekopdracht mislukt:', e);
+    return null;
+  }
 }
 
 function renderQuickQuestions() {
@@ -125,12 +161,38 @@ function renderQuickQuestions() {
   });
 }
 
-function handleUserMessage(text) {
+async function handleUserMessage(text) {
   if (!text.trim()) return;
   addMessage(text, 'user');
-  setTimeout(() => {
-    addMessage(findAnswer(text), 'bot');
-  }, 400);
+
+  const local = findLocalAnswer(text);
+  if (local) {
+    setTimeout(() => addMessage(local, 'bot'), 400);
+    return;
+  }
+
+  // Geen lokaal antwoord: laat zien dat Rob op internet gaat zoeken
+  await new Promise(r => setTimeout(r, 300));
+  const searchingMsg = addMessage('🔎 Ik weet dit niet uit mijn eigen kennis, ik zoek het even op internet op...', 'bot eindje-searching');
+
+  const result = await searchWeb(text);
+  searchingMsg.remove();
+
+  if (result) {
+    addMessage(
+      `${escapeHtmlChat(result.text)}<br><br>🌐 Gevonden op internet — <a href="${result.url}" target="_blank" rel="noopener">lees meer op Wikipedia</a>`,
+      'bot',
+      true
+    );
+  } else {
+    const fallback = FALLBACKS[Math.floor(Math.random() * FALLBACKS.length)];
+    const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(text + ' Eindhoven')}`;
+    addMessage(
+      `${escapeHtmlChat(fallback)} Ik kon niets bruikbaars vinden, probeer het eens met deze zoekopdracht: <a href="${googleUrl}" target="_blank" rel="noopener">"${escapeHtmlChat(text)}" op Google</a> 🌐`,
+      'bot',
+      true
+    );
+  }
 }
 
 let initialized = false;

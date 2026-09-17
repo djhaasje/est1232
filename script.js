@@ -82,6 +82,10 @@ const KNOWLEDGE = [
   {
     keywords: ['bedankt', 'dank je', 'dankjewel'],
     answer: "Graag gedaan! Nog een vraag over Eindhoven? Ik hoor het graag. 😊"
+  },
+  {
+    keywords: ['leukste burgemeester', 'beste burgemeester', 'leukste burgervader', 'beste burgervader'],
+    answer: "Dat is heel duidelijk: dat ben ikzelf, Rob van Gijzel natuurlijk! 😎🏅"
   }
 ];
 

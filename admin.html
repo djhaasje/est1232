@@ -7,6 +7,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=20260917114017" />
 <link rel="stylesheet" href="admin.css?v=20260917080220" />
+<script src="admin-auth.js?v=20260917120000" defer></script>
+<style>
+  html.admin-locked body > *:not(#admin-auth-overlay) { display: none !important; }
+  #admin-auth-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: #14171c; font-family: 'Barlow', sans-serif;
+  }
+  .admin-auth-box {
+    background: #1f242c; padding: 2rem 2.5rem; border-radius: 12px;
+    text-align: center; color: #fff; box-shadow: 0 10px 40px rgba(0,0,0,.4);
+    width: 90%; max-width: 340px;
+  }
+  .admin-auth-box h2 { margin: 0 0 .5rem; font-family: 'Archivo Black', sans-serif; }
+  .admin-auth-box input {
+    width: 100%; padding: .6rem .8rem; margin: 1rem 0 .75rem; border-radius: 8px;
+    border: 1px solid #3a4150; background: #11141a; color: #fff; font-size: 1rem; box-sizing: border-box;
+  }
+  .admin-auth-box button {
+    width: 100%; padding: .6rem .8rem; border-radius: 8px; border: none;
+    background: #d63b3b; color: #fff; font-weight: 700; cursor: pointer;
+  }
+  .admin-auth-error { color: #ff8a8a; min-height: 1.2em; margin: .5rem 0 0; font-size: .9rem; }
+</style>
 </head>
 <body class="admin-body">
 

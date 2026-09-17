@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>800 jaar Eindhoven | 1232 - 2032</title>
+<meta name="description" content="Eindhoven bestaat 800 jaar! Ontdek de geschiedenis van Eindhoven, een scrollbare tijdlijn en honderden oude en moderne foto's." />
+<link rel="preconnect" href="https://upload.wikimedia.org">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="topbar">Eindhoven viert 800 jaar stadsrechten &mdash; 1232 &rarr; 2032</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="logo">EINDHOVEN<span>800</span></a>
+    <nav class="main-nav">
+      <a href="#geschiedenis">Geschiedenis</a>
+      <a href="#tijdlijn">Tijdlijn</a>
+      <a href="#fotos">Foto's</a>
+      <a href="#contact">Contact</a>
+      <a href="admin.html" class="nav-admin">Beheer</a>
+    </nav>
+  </div>
+</header>
+
+<section id="top" class="hero">
+  <div class="hero-bg">
+    <img id="hero-img" src="assets/img/eindhoven-skyline-night.webp" alt="Eindhoven skyline" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-kicker" id="hero-kicker">1232 — 2032</p>
+    <h1 id="hero-title">800 JAAR<br>EINDHOVEN</h1>
+    <p class="hero-sub" id="hero-sub">Van middeleeuws stadje met stadsrechten tot dé Brainport van Nederland. Ontdek acht eeuwen geschiedenis, verteld in beeld, tijdlijn en verhaal.</p>
+    <a href="#tijdlijn" class="btn-primary">Bekijk de tijdlijn ↓</a>
+  </div>
+</section>
+
+<section id="aftelklok" class="countdown-section">
+  <div class="container">
+    <p class="countdown-label" id="countdown-label">Nog tot 800 jaar Eindhoven</p>
+    <div class="countdown-clock" id="countdown-clock">
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-days">0000</span>
+        <span class="countdown-word">dagen</span>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-hours">00</span>
+        <span class="countdown-word">uren</span>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-minutes">00</span>
+        <span class="countdown-word">minuten</span>
+      </div>
+      <div class="countdown-sep">:</div>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-seconds">00</span>
+        <span class="countdown-word">seconden</span>
+      </div>
+    </div>
+    <p class="countdown-date" id="countdown-date"></p>
+  </div>
+</section>
+
+<section id="geschiedenis" class="section">
+  <div class="container">
+    <p class="eyebrow">Het verhaal</p>
+    <h2>De geschiedenis van Eindhoven</h2>
+
+    <div class="history-grid">
+      <div class="history-text" id="history-text">
+        <!-- wordt gevuld door render.js -->
+      </div>
+
+      <aside class="history-facts">
+        <h4>Snelle feiten</h4>
+        <ul id="history-facts-list"></ul>
+        <div class="fact-quote" id="history-quote"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="tijdlijn" class="section section-dark">
+  <div class="container">
+    <p class="eyebrow">800 jaar in vogelvlucht</p>
+    <h2>De tijdlijn van Eindhoven</h2>
+    <p class="section-intro">Scroll horizontaal door acht eeuwen Eindhovense geschiedenis — sleep, swipe of gebruik de pijltjes.</p>
+  </div>
+
+  <div class="timeline-wrapper">
+    <button class="tl-arrow tl-arrow-left" aria-label="Scroll links">‹</button>
+    <div class="timeline" id="timeline">
+      <div class="tl-track" id="tl-track">
+        <!-- wordt gevuld door render.js -->
+      </div>
+    </div>
+    <button class="tl-arrow tl-arrow-right" aria-label="Scroll rechts">›</button>
+  </div>
+</section>
+
+<section id="fotos" class="section">
+  <div class="container">
+    <p class="eyebrow">Toen en nu</p>
+    <h2>Eindhoven in beeld</h2>
+    <p class="section-intro">Van middeleeuwse kaarten en fabrieksarbeiders tot de skyline van vandaag: acht eeuwen Eindhoven in foto's.</p>
+
+    <h3 class="gallery-heading">Oude foto's &amp; historische afbeeldingen</h3>
+    <div class="gallery" id="gallery-old">
+      <!-- wordt gevuld door render.js -->
+    </div>
+
+    <h3 class="gallery-heading">Eindhoven vandaag</h3>
+    <div class="gallery" id="gallery-modern">
+      <!-- wordt gevuld door render.js -->
+    </div>
+    <p class="photo-credit">Foto's: Wikimedia Commons, diverse fotografen &amp; publiek domein bronnen (o.a. Nationaal Archief / Anefo, Rijksdienst voor het Cultureel Erfgoed, Imperial War Museums).</p>
+  </div>
+</section>
+
+<section id="contact" class="section section-dark">
+  <div class="container contact-grid">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-heading">EHV365 — het kloppend hart van Eindhoven</h2>
+      <p class="section-intro" id="contact-intro"></p>
+      <ul class="contact-list" id="contact-list"></ul>
+      <p class="disclaimer" id="contact-disclaimer"></p>
+    </div>
+    <div class="contact-card">
+      <h3>Stel je vraag aan Eindje</h3>
+      <p>Onze chatbot Eindje beantwoordt je vragen over 800 jaar geschiedenis van Eindhoven. Klik rechtsonder op het chat-icoon om te beginnen!</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2032 — 800 jaar Eindhoven | In stijl van EHV365 (Eindhoven365) | Gemaakt als jubileum-hommage</p>
+  </div>
+</footer>
+
+<!-- Chatbot: Eindje -->
+<button id="eindje-toggle" class="eindje-toggle" aria-label="Open chatbot Eindje">
+  <span class="eindje-avatar">🏰</span>
+  <span class="eindje-label">Eindje</span>
+</button>
+
+<div id="eindje-window" class="eindje-window hidden">
+  <div class="eindje-header">
+    <span class="eindje-avatar">🏰</span>
+    <div>
+      <strong>Eindje</strong>
+      <div class="eindje-status">jouw gids door 800 jaar Eindhoven</div>
+    </div>
+    <button id="eindje-close" aria-label="Sluit chat">✕</button>
+  </div>
+  <div id="eindje-messages" class="eindje-messages"></div>
+  <div class="eindje-quick" id="eindje-quick"></div>
+  <form id="eindje-form" class="eindje-form">
+    <input id="eindje-input" type="text" placeholder="Stel een vraag over Eindhoven..." autocomplete="off" />
+    <button type="submit">➤</button>
+  </form>
+</div>
+
+<script src="data.js"></script>
+<script src="countdown.js"></script>
+<script src="render.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

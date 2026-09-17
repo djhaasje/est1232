@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beheer | 800 jaar Eindhoven CMS</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body">
+
+<header class="admin-header">
+  <a href="index.html" class="logo">EINDHOVEN<span>800</span></a>
+  <div class="admin-header-title">Beheerpaneel (CMS)</div>
+  <div class="admin-header-actions">
+    <a href="index.html" target="_blank" class="btn-ghost">Bekijk site ↗</a>
+  </div>
+</header>
+
+<div class="admin-status" id="admin-status"></div>
+
+<main class="admin-main">
+
+  <nav class="admin-tabs">
+    <button class="admin-tab active" data-tab="hero">Hero</button>
+    <button class="admin-tab" data-tab="countdown">Aftelklok</button>
+    <button class="admin-tab" data-tab="history">Geschiedenis</button>
+    <button class="admin-tab" data-tab="timeline">Tijdlijn</button>
+    <button class="admin-tab" data-tab="gallery">Foto's</button>
+    <button class="admin-tab" data-tab="contact">Contact</button>
+    <button class="admin-tab" data-tab="data">Data beheer</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="admin-panel active" id="panel-hero">
+    <h2>Hero-sectie</h2>
+    <p class="admin-hint">De bovenste sectie op de homepage.</p>
+
+    <label>Kicker (klein tekstje boven titel)</label>
+    <input type="text" id="hero-kicker-input" />
+
+    <label>Titel (HTML toegestaan, gebruik &lt;br&gt; voor regeleinde)</label>
+    <input type="text" id="hero-title-input" />
+
+    <label>Subtitel</label>
+    <textarea id="hero-sub-input" rows="3"></textarea>
+
+    <label>Achtergrondfoto</label>
+    <div class="image-field">
+      <img id="hero-image-preview" class="image-preview" alt="preview" />
+      <div class="image-field-controls">
+        <input type="text" id="hero-image-input" placeholder="pad of URL naar afbeelding" />
+        <input type="file" id="hero-image-upload" accept="image/*" />
+      </div>
+    </div>
+
+    <label>Alt-tekst afbeelding</label>
+    <input type="text" id="hero-image-alt-input" />
+  </section>
+
+  <!-- AFTELKLOK -->
+  <section class="admin-panel" id="panel-countdown">
+    <h2>Aftelklok</h2>
+    <p class="admin-hint">De grote klok op de homepage die aftelt naar het 800-jarig bestaan.</p>
+
+    <label>Tekst boven de klok</label>
+    <input type="text" id="countdown-label-input" />
+
+    <label>Doeldatum &amp; tijd</label>
+    <input type="text" id="countdown-date-input" placeholder="jjjj-mm-ddThh:mm:ss (bv. 2032-09-21T00:00:00)" />
+    <p class="admin-hint">Standaard: 21 september 2032, de dag dat het 800 jaar geleden is dat Eindhoven stadsrechten kreeg (1232).</p>
+  </section>
+
+  <!-- GESCHIEDENIS -->
+  <section class="admin-panel" id="panel-history">
+    <h2>Geschiedenis-secties</h2>
+    <p class="admin-hint">Elke sectie krijgt een kop en een tekstblok, in volgorde van boven naar beneden.</p>
+    <div id="history-sections-list"></div>
+    <button type="button" class="btn-add" id="add-history-section">+ Sectie toevoegen</button>
+
+    <h3>Snelle feiten (zijbalk)</h3>
+    <p class="admin-hint">Eén feit per regel. HTML zoals &lt;strong&gt; mag gebruikt worden.</p>
+    <textarea id="history-facts-input" rows="6"></textarea>
+
+    <h3>Citaat (zijbalk)</h3>
+    <input type="text" id="history-quote-input" />
+  </section>
+
+  <!-- TIJDLIJN -->
+  <section class="admin-panel" id="panel-timeline">
+    <h2>Tijdlijn</h2>
+    <p class="admin-hint">De horizontaal scrollbare tijdlijn. Vink "toekomstig" aan voor het 2032-jubileum-item (rode kaart).</p>
+    <div id="timeline-list"></div>
+    <button type="button" class="btn-add" id="add-timeline-item">+ Tijdlijn-item toevoegen</button>
+  </section>
+
+  <!-- GALERIJ -->
+  <section class="admin-panel" id="panel-gallery">
+    <h2>Foto's</h2>
+
+    <h3>Oude foto's</h3>
+    <div id="gallery-old-list" class="gallery-admin-grid"></div>
+    <button type="button" class="btn-add" id="add-gallery-old">+ Oude foto toevoegen</button>
+
+    <h3>Moderne foto's</h3>
+    <div id="gallery-modern-list" class="gallery-admin-grid"></div>
+    <button type="button" class="btn-add" id="add-gallery-modern">+ Moderne foto toevoegen</button>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="admin-panel" id="panel-contact">
+    <h2>Contact</h2>
+
+    <label>Titel</label>
+    <input type="text" id="contact-heading-input" />
+
+    <label>Introductietekst (HTML toegestaan)</label>
+    <textarea id="contact-intro-input" rows="3"></textarea>
+
+    <label>Organisatienaam</label>
+    <input type="text" id="contact-org-input" />
+
+    <label>Website</label>
+    <input type="text" id="contact-website-input" />
+
+    <label>E-mail</label>
+    <input type="text" id="contact-email-input" />
+
+    <label>Social</label>
+    <input type="text" id="contact-social-input" />
+
+    <label>Disclaimer</label>
+    <textarea id="contact-disclaimer-input" rows="3"></textarea>
+  </section>
+
+  <!-- DATA BEHEER -->
+  <section class="admin-panel" id="panel-data">
+    <h2>Data beheer</h2>
+    <p class="admin-hint">
+      Alle content wordt opgeslagen in de <strong>localStorage</strong> van deze browser. Dit betekent
+      dat wijzigingen alleen zichtbaar zijn op dit apparaat/browser, tenzij je ze exporteert en weer
+      importeert (bijvoorbeeld om ze te delen of te bewaren als back-up).
+    </p>
+    <div class="data-actions">
+      <button type="button" class="btn-ghost" id="export-json">⬇ Exporteer JSON</button>
+      <label class="btn-ghost file-btn">
+        ⬆ Importeer JSON
+        <input type="file" id="import-json" accept="application/json" hidden />
+      </label>
+      <button type="button" class="btn-danger" id="reset-data">↺ Reset naar standaard content</button>
+    </div>
+  </section>
+
+  <div class="admin-savebar">
+    <button type="button" class="btn-primary" id="save-btn">Wijzigingen opslaan</button>
+    <span id="save-msg"></span>
+  </div>
+
+</main>
+
+<script src="data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

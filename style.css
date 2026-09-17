@@ -430,7 +430,14 @@ a { color: var(--red); }
   font-size: 15px;
 }
 .eindje-toggle:hover { background: var(--red-dark); }
-.eindje-avatar { font-size: 20px; }
+.eindje-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--white);
+}
 
 .eindje-window {
   position: fixed;

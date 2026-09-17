@@ -9,7 +9,7 @@ function scrollTimeline(amount) {
 arrowLeft?.addEventListener('click', () => scrollTimeline(-320));
 arrowRight?.addEventListener('click', () => scrollTimeline(320));
 
-// ---------- Chatbot: Eindje ----------
+// ---------- Chatbot: Vraag het Rob ----------
 const toggleBtn = document.getElementById('eindje-toggle');
 const windowEl = document.getElementById('eindje-window');
 const closeBtn = document.getElementById('eindje-close');
@@ -77,7 +77,7 @@ const KNOWLEDGE = [
   },
   {
     keywords: ['hallo', 'hoi', 'hey', 'goedemorgen', 'goedemiddag'],
-    answer: "Hoi, ik ben Eindje! 🏰 Ik weet alles over de geschiedenis van Eindhoven. Vraag me bijvoorbeeld naar Philips, de bevrijding, of waarom Eindhoven 800 jaar bestaat."
+    answer: "Hoi, ik ben Rob! Ik weet alles over de geschiedenis van Eindhoven. Vraag me bijvoorbeeld naar Philips, de bevrijding, of waarom Eindhoven 800 jaar bestaat."
   },
   {
     keywords: ['bedankt', 'dank je', 'dankjewel'],
@@ -137,7 +137,7 @@ let initialized = false;
 function openChat() {
   windowEl.classList.remove('hidden');
   if (!initialized) {
-    addMessage("Hoi! Ik ben Eindje 🏰, jouw gids door 800 jaar Eindhoven. Waar ben je benieuwd naar?", 'bot');
+    addMessage("Hoi! Ik ben Rob, jouw gids door 800 jaar Eindhoven. Waar ben je benieuwd naar?", 'bot');
     renderQuickQuestions();
     initialized = true;
   }

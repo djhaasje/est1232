@@ -31,17 +31,6 @@ a { color: var(--red); }
   padding: 0 24px;
 }
 
-/* Topbar */
-.topbar {
-  background: var(--black);
-  color: var(--white);
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  padding: 6px 12px;
-}
-
 /* Header */
 .site-header {
   position: sticky;
